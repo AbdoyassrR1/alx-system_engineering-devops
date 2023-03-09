@@ -1,2 +1,2 @@
 #!/bin/bash
-chown --from=102-if_only betty hello
+chown --from=guillaume betty hello
