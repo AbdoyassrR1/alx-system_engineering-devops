@@ -1,11 +1,10 @@
 #!/usr/bin/env bash
-# Process and PID file "Why you no love me??"
-NAME="To infinity and beyond"
-trap "echo 'Y U no love me?!'" SIGINT
-trap "echo 'I hate the kill command'; rm /var/run/holbertonscript.pid; exit" SIGTERM
-trap "rm /var/run/holbertonscript.pid; exit" SIGQUIT
-echo $$ > /var/run/holbertonscript.pid
-while true; do
-    echo "$NAME"
-    sleep 2
+# The script.
+pid=$(pgrep -f 100-process_and_pid_file)
+echo "$pid" > holbertonscript.pid
+sudo mv ./holbertonscript.pid /var/run/
+while ((1)); do
+    echo "To infinity and beyond"
+    trap 'echo "I hate the kill command" && sudo rm "/var/run/holbertonscript.pid" && kill -SIGKILL $pid' SIGTERM
+    trap 'echo "Y U no love me?!"' SIGINT
 done
