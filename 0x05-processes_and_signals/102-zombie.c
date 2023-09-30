@@ -4,9 +4,8 @@
 #include <unistd.h>
 
 /**
- * infinite_while - infinite loop
- * Return: 0
- *
+ * infinite_while - nfinite loop to make the program hang
+ * Return: always 0
  */
 int infinite_while(void)
 {
@@ -18,25 +17,22 @@ int infinite_while(void)
 }
 
 /**
- * main - creates zombies
- * Return: 0
+ * main - creates 5 zombies
+ * Return: always 0
  */
-
 int main(void)
 {
-	int c;
-	pid_t child_pid;
+	int i;
+	pid_t zombie;
 
-	for (c = 0; c < 5; c++)
+	for (i = 0; i < 5; i++)
 	{
-		child_pid = fork();
-		if (child_pid > 0)
-		{
-			printf("Zombie process created, PID: %d\n", child_pid);
-		}
-		else
-			exit(0);
+		zombie = fork();
+		if (!zombie)
+			return (0);
+		printf("Zombie process created, PID: %d\n", zombie);
 	}
+
 	infinite_while();
 	return (0);
 }
