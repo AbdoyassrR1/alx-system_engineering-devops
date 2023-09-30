@@ -1,29 +1,42 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <sys/types.h>
 #include <unistd.h>
-#include <sys/wait.h>
 
 /**
- * main - zombies proccess.
+ * infinite_while - infinite loop
+ * Return: 0
  *
- * Description: make five zombies
- * Return: 0 for success
  */
+int infinite_while(void)
+{
+	while (1)
+	{
+		sleep(1);
+	}
+	return (0);
+}
+
+/**
+ * main - creates zombies
+ * Return: 0
+ */
+
 int main(void)
 {
-	int count;
-	pid_t pidme;
+	int c;
+	pid_t child_pid;
 
-	count = 0;
-	while (count < 5)
+	for (c = 0; c < 5; c++)
 	{
-		pidme = fork();
-		if (pidme)
-			printf("Zombie process created, PID: %i\n", pidme);
+		child_pid = fork();
+		if (child_pid > 0)
+		{
+			printf("Zombie process created, PID: %d\n", child_pid);
+		}
 		else
 			exit(0);
-		count++;
 	}
-	sleep(100);
+	infinite_while();
 	return (0);
 }
