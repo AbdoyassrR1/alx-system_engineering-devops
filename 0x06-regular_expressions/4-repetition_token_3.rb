@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
 # a Ruby script that accepts one argument and pass it
-# exactly matching a string that starts with h ends with n and can have any single character in between
+# to a regular expression matching using  repetition topens
 
-puts ARGV[0].scan(/\bh.?n$/).join
+puts ARGV[0].scan(/hbt*n/).join
