@@ -1,4 +1,4 @@
 #!/usr/bin/env ruby
 # The regular expression must match School
 
-puts ARGS[0].scan(/\bSchool\b/).join
+puts ARGV[0].scan(/\bSchool\b/).join
