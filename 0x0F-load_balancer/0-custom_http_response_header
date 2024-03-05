@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# configures a brand new Ubuntu machine
+sudo apt-get update
+sudo apt-get -y install nginx
+touch /var/www/html/index.html
+echo "Hello World!" > /var/www/html/index.html
+touch /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+sudo sed -i "/server_name _/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+# Test the Nginx
+sudo nginx -t
+
+# Restart Nginx server
+sudo service nginx restart
