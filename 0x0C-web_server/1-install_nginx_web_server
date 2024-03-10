@@ -1,13 +1,7 @@
 #!/usr/bin/env bash
 # install nginx
 
-sudo apt -y update
+sudo apt update
 sudo apt-get -y install nginx
-sudo ufw allow 'Nginx HTTP'
-sudo ufw enable
-echo "Hello World!" | sudo tee '/var/www/html/index.nginx-debian.html'  > /dev/null
-if [ "$(pgrep -c nginx)" -le 0 ]; then
-	service nginx start
-else
-	service nginx restart
-fi
+echo "Hello World!" > /var/www/html/index.html
+service nginx
