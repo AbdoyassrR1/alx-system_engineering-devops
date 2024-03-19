@@ -1,9 +1,5 @@
 #
 # rules.before
-*nat
-:PREROUTING ACCEPT [0:0]
--A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
-COMMIT
 #
 # Rules that should be run before the ufw command line added rules. Custom
 # rules should be added to one of these chains:
@@ -11,6 +7,17 @@ COMMIT
 #   ufw-before-output
 #   ufw-before-forward
 #
+
+
+*nat
+:PREROUTING ACCEPT [0:0]
+-A PREROUTING -p tcp --dport 8080 -j REDIRECT --to-port 80
+COMMIT
+
+
+
+
+
 
 # Don't delete these required lines, otherwise there will be errors
 *filter
@@ -49,7 +56,7 @@ COMMIT
 # allow dhcp client to work
 -A ufw-before-input -p udp --sport 67 --dport 68 -j ACCEPT
 
-
+#
 # ufw-not-local
 #
 -A ufw-before-input -j ufw-not-local
