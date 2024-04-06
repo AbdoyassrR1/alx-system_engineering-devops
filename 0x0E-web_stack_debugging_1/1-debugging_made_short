@@ -3,4 +3,3 @@
 sudo ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 sudo nginx service restart
 sudo pkill -o nginx
-
