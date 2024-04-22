@@ -14,7 +14,6 @@ if __name__ == "__main__":
 
     user = requests.get(f"{url}/users/{employee_id}").json()
     todos = requests.get(f"{url}/todos", params={'userId': employee_id}).json()
-    file_name = employee_id + ".csv"
 
     with open(f"{employee_id}.csv", "w", newline="") as file:
         writer = csv.writer(file, quoting=csv.QUOTE_ALL)
