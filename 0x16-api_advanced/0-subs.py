@@ -13,5 +13,5 @@ def number_of_subscribers(subreddit):
                             allow_redirects=False)
     if subscribers.status_code == 200:
         return subscribers.json().get("data").get("subscribers")
-    else:    
+    else:
         return 0
