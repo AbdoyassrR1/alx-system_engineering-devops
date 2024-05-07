@@ -7,12 +7,11 @@ import requests
 
 def number_of_subscribers(subreddit):
     """Construct the URL for the subreddit's about page in JSON format"""
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
-    res = requests.get(url, headers={'User-Agent': 'app/1.0'})
-    if res.status_code == 200:
-        data = res.json()
-        subscribers = data['data']['subscribers']
-        return subscribers
-
-    else:
+    subscribers = requests.get(
+                            f"https://www.reddit.com/r/{subreddit}/about.json",
+                            headers={"User-Agent": "My-User-Agent"},
+                            allow_redirects=False)
+    if subscribers.status_code == 200:
+        return subscribers.json().get("data").get("subscribers")
+    else:    
         return 0
