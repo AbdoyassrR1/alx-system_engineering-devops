@@ -1,1 +1,3 @@
+#!/usr/bin/env bash
+# reload_gunicorn_no_downtime
 pgrep gunicorn | xargs kill -HUP
